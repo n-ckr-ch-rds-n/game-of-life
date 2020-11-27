@@ -1,9 +1,14 @@
 <script lang="ts">
     export let state: number = 0;
+    const colorByState = {
+        0: "white",
+        1: "black"
+    };
+    let color: string = colorByState[state];
 </script>
 
 <main>
-    <div class="square"></div>
+    <div class="square" style = "background-color: {color}"></div>
     <p>{state}</p>
 </main>
 
@@ -11,6 +16,5 @@
     .square {
         height: 50px;
         width: 50px;
-        background-color: black;
     }
 </style>
