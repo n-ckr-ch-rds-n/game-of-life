@@ -1,4 +1,8 @@
 <script lang="ts">
 	import Cell from "./cell/Cell.svelte"
+
+    let cells = [1, 2, 3, 4];
 </script>
-<Cell state={1}/>
+{#each cells as cell}
+    <Cell state={7}/>
+{/each}
