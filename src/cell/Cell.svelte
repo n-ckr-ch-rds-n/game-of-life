@@ -1,9 +1,10 @@
 <script lang="ts">
-
+    export let state: number;
 </script>
 
 <main>
     <div class="square"></div>
+    <p>{state}</p>
 </main>
 
 <style>
