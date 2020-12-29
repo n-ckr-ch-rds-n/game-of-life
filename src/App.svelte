@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Cell from "./cell/Cell.svelte"
     import {MatrixUpdater} from "./matrix updater/matrix.updater";
     import {CellStateCalculator} from "./cell-state calculator/cell.state.calculator";
     import {matrixStore} from "./matrix store/matrix.store";
@@ -20,12 +19,11 @@
 
     setInterval(() => {
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
-    }, 5000);
+    }, 10);
 
 </script>
-{#each matrix as row}
-    <Row row={row}/>
-{/each}
-<!--{#each cells as cell}-->
-<!--    <Cell state={cell.state}/>-->
-<!--{/each}-->
+<main>
+    {#each matrix as row}
+        <Row row={row}/>
+    {/each}
+</main>

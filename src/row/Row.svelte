@@ -3,15 +3,26 @@
     export let row;
 </script>
 
-<main>
+<div class="row">
     {#each row as cellState}
-        <Cell state="{cellState}"></Cell>
+        <span class="cell">
+            <div class="cell" style="background-color: {cellState ? 'black' : 'lightblue'}">
+            </div>
+        </span>
     {/each}
-</main>
+</div>
 
 <style>
-    .square {
-        height: 50px;
-        width: 50px;
+    .row {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .cell {
+
+        width: 10px;
+        height: 10px;
     }
 </style>
