@@ -1,9 +1,6 @@
 export class CellStateCalculator {
 
     calculateCellState(alive: boolean, neighbours: boolean[]): boolean {
-        if (neighbours.length !== 8) {
-            throw new Error("Insufficient neighbour data to perform calculation");
-        }
         if (alive) {
             return !(this.isLonely(neighbours) || this.isOverCrowded(neighbours));
         } else {

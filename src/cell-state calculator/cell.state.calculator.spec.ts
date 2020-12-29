@@ -10,12 +10,6 @@ describe("Cell state calculator", () => {
         calculator = new CellStateCalculator();
     })
 
-    it("Throws if passed the wrong number of neighbours", () => {
-        cellState = true;
-        neighbours = [true, false, false];
-        expect(() => calculator.calculateCellState(cellState, neighbours)).toThrow();
-    })
-
     it("Determines whether cells are lonely", () => {
         neighbours = [false, true, false, false];
         expect(calculator.isLonely(neighbours)).toBe(true);
