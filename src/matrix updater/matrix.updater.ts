@@ -9,16 +9,13 @@ export class MatrixUpdater {
     updateMatrix(matrix: (boolean[])[]): (boolean[])[] {
         return matrix.map((row, rowIndex) => {
             return row.map((cellState, cellIndex) => {
-                console.log("ROW", row);
                 const request = {
                     previousRow: matrix[rowIndex - 1],
                     currentRow: row,
                     nextRow: matrix[rowIndex + 1],
                     cellIndex
                 };
-                console.log("CELL INDEX", cellIndex);
                 const neighbours = this.toNeighbours(request);
-                console.log("NEIGHBS", neighbours);
                 return this.cellStateCalculator.calculateCellState(cellState, neighbours);
             })
         })
