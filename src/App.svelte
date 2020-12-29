@@ -9,14 +9,9 @@
     const updater = new MatrixUpdater(calculator);
     const initialiser = new MatrixInitialiser();
     const initialMatrix = initialiser.initialise(window.innerWidth);
-    updater.updateMatrix(initialMatrix);
-
+    matrixStore.update(() => initialMatrix);
     setInterval(() => {
-        matrixStore.update((currentValue) => {
-            const newValue = updater.updateMatrix(currentValue);
-            console.log("new val", newValue);
-            return newValue;
-        });
+        matrixStore.update(currentValue => updater.updateMatrix(currentValue));
     }, 5000)
     let cells = [{state: 1}, {state: 1}];
 </script>
