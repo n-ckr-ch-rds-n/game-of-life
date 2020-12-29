@@ -22,7 +22,6 @@
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
     }, 5000);
 
-    let cells = [{state: 1}, {state: 1}];
 </script>
 {#each matrix as row}
     <Row row={row}/>

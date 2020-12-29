@@ -1,14 +1,12 @@
 <script lang="ts">
+    import Cell from "../cell/Cell.svelte";
     export let row;
-    // const colorByState = {
-    //     0: "white",
-    //     1: "black"
-    // };
-    // let color: string = colorByState[state];
 </script>
 
 <main>
-    <div>{row}</div>
+    {#each row as cellState}
+        <Cell state="{cellState}"></Cell>
+    {/each}
 </main>
 
 <style>
