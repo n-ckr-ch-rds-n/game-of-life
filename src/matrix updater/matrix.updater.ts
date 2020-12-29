@@ -1,12 +1,13 @@
 import {CellStateCalculator} from "../cell-state calculator/cell.state.calculator";
 import {FindNeighboursRequest} from "./find.neighbours.request";
+import {Matrix} from "./matrix";
 
 export class MatrixUpdater {
 
     constructor(private cellStateCalculator: CellStateCalculator) {
     }
 
-    updateMatrix(matrix: (boolean[])[]): (boolean[])[] {
+    updateMatrix(matrix: Matrix): Matrix {
         return matrix.map((row, rowIndex) => {
             return row.map((cellState, cellIndex) => {
                 const request = {
