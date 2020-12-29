@@ -3,13 +3,14 @@ import expect from "expect";
 
 describe("Cell state calculator", () => {
     let calculator: CellStateCalculator;
+    let neighbours: boolean[];
 
     beforeEach(() => {
         calculator = new CellStateCalculator();
     })
 
     it("Determines whether cells are lonely", () => {
-        let neighbours = [false, true, false, false];
+        neighbours = [false, true, false, false];
         expect(calculator.isLonely(neighbours)).toBe(true);
 
         neighbours = [true, true, false, false];
@@ -17,6 +18,10 @@ describe("Cell state calculator", () => {
     })
 
     it("Determines whether cells are overcrowded", () => {
+        neighbours = [true, true, true, true];
+        expect(calculator.isOverCrowded(neighbours)).toBe(true);
 
+        neighbours = [true, true, true, false];
+        expect(calculator.isOverCrowded(neighbours)).toBe(false);
     })
 })
