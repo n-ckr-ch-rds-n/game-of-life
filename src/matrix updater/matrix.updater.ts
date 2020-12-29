@@ -9,14 +9,16 @@ export class MatrixUpdater {
     updateMatrix(matrix: (boolean[])[]): (boolean[])[] {
         return matrix.map((row, rowIndex) => {
             return row.map((cellState, cellIndex) => {
+                console.log("ROW", row);
                 const request = {
                     previousRow: matrix[rowIndex - 1],
                     currentRow: row,
                     nextRow: matrix[rowIndex + 1],
                     cellIndex
                 };
-                console.log("Request", request);
+                console.log("CELL INDEX", cellIndex);
                 const neighbours = this.toNeighbours(request);
+                console.log("NEIGHBS", neighbours);
                 return this.cellStateCalculator.calculateCellState(cellState, neighbours);
             })
         })
@@ -29,7 +31,7 @@ export class MatrixUpdater {
         return [
             ...previousAndNextAdjacents,
             ...this.toAdjacents(request.currentRow, request.cellIndex)
-        ].filter(c => c === undefined);
+        ].filter(c => c !== undefined);
     }
 
     private toAdjacents(row: boolean[], cellIndex: number): boolean[] {
