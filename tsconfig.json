@@ -5,6 +5,9 @@
   "compilerOptions": {
     "types": ["mocha"],
     "isolatedModules": false,
-    "importsNotUsedAsValues": "preserve"
+    "importsNotUsedAsValues": "preserve",
+    "lib": [
+      "es2019"
+    ]
   }
 }

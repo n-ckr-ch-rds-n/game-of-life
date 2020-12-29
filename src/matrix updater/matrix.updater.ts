@@ -2,6 +2,7 @@ import {CellStateCalculator} from "../cell-state calculator/cell.state.calculato
 import {FindNeighboursRequest} from "./find.neighbours.request";
 
 export class MatrixUpdater {
+
     constructor(private cellStateCalculator: CellStateCalculator) {
     }
 
@@ -20,21 +21,23 @@ export class MatrixUpdater {
     }
 
     toNeighbours(request: FindNeighboursRequest): boolean[] {
+        const previousAndNextAdjacents = [request.previousRow, request.nextRow]
+            .map(r => this.toPreviousOrNextRowAdjacents(r, request.cellIndex))
+            .flat();
         return [
-            ...this.toPreviousOrNextRowAdjacents(request.previousRow, request.cellIndex),
-            ...this.toPreviousOrNextRowAdjacents(request.nextRow, request.cellIndex),
+            ...previousAndNextAdjacents,
             ...this.toAdjacents(request.currentRow, request.cellIndex)
         ];
     }
 
-    toAdjacents(row: boolean[], cellIndex: number): boolean[] {
+    private toAdjacents(row: boolean[], cellIndex: number): boolean[] {
         return [
             row[cellIndex - 1],
             row[cellIndex + 1],
         ]
     }
 
-    toPreviousOrNextRowAdjacents(row: boolean[], cellIndex: number): boolean[] {
+    private toPreviousOrNextRowAdjacents(row: boolean[], cellIndex: number): boolean[] {
         return [
             ...this.toAdjacents(row, cellIndex),
             row[cellIndex]
