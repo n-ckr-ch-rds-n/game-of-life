@@ -5,16 +5,24 @@
     import {matrixStore} from "./matrix store/matrix.store";
     import {MatrixInitialiser} from "./matrix initialiser/matrix.initialiser";
 
+    let matrix;
+
 	const calculator = new CellStateCalculator();
     const updater = new MatrixUpdater(calculator);
     const initialiser = new MatrixInitialiser();
     const initialMatrix = initialiser.initialise(window.innerWidth);
     matrixStore.update(() => initialMatrix);
+
+    const unsubscribe = matrixStore.subscribe(m => {
+        matrix = m;
+    })
+
     setInterval(() => {
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
-    }, 5000)
+    }, 5000);
+
     let cells = [{state: 1}, {state: 1}];
 </script>
-{#each cells as cell}
-    <Cell state={cell.state}/>
+{#each matrix as row}
+    <div>ROW</div>
 {/each}
