@@ -4,18 +4,11 @@
     import {matrixStore} from "./matrix store/matrix.store";
     import {MatrixInitialiser} from "./matrix initialiser/matrix.initialiser";
     import Row from "./row/Row.svelte";
-
-    let matrix;
-
     const calculator = new CellStateCalculator();
     const updater = new MatrixUpdater(calculator);
     const initialiser = new MatrixInitialiser();
     const initialMatrix = initialiser.initialise(window.innerWidth);
     matrixStore.update(() => initialMatrix);
-
-    const unsubscribe = matrixStore.subscribe(m => {
-        matrix = m;
-    })
 
     setInterval(() => {
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
@@ -23,7 +16,7 @@
 
 </script>
 <main>
-    {#each matrix as row}
+    {#each $matrixStore as row}
         <Row row={row}/>
     {/each}
 </main>
