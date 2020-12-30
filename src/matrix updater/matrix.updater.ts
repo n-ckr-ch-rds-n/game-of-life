@@ -11,9 +11,9 @@ export class MatrixUpdater {
         return matrix.map((row, rowIndex) => {
             return row.map((cellState, cellIndex) => {
                 const request = {
-                    previousRow: matrix[rowIndex - 1],
+                    previousRow: matrix[rowIndex - 1] || matrix[matrix.length - 1],
                     currentRow: row,
-                    nextRow: matrix[rowIndex + 1],
+                    nextRow: matrix[rowIndex + 1] || matrix[0],
                     cellIndex
                 };
                 const neighbours = this.toNeighbours(request);
@@ -40,10 +40,10 @@ export class MatrixUpdater {
     }
 
     private toPreviousOrNextRowAdjacents(row: boolean[], cellIndex: number): boolean[] {
-        return row ? [
+        return [
             ...this.toAdjacents(row, cellIndex),
             row[cellIndex]
-        ] : [];
+        ];
     }
 
 }

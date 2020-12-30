@@ -1,13 +1,11 @@
 <script lang="ts">
-    import Cell from "../cell/Cell.svelte";
     export let row;
 </script>
 
 <div class="row">
     {#each row as cellState}
         <span class="cell">
-            <div class="cell" style="background-color: {cellState ? 'black' : 'lightblue'}">
-            </div>
+            <div class="cell" style="background-color: {cellState ? 'black' : 'lightblue'}"></div>
         </span>
     {/each}
 </div>

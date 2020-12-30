@@ -5,6 +5,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
+    "test": "ts-mocha src/**/*.spec.ts",
     "validate": "svelte-check"
   },
   "devDependencies": {
