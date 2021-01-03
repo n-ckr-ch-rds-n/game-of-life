@@ -1,6 +1,5 @@
-export interface FindNeighboursRequest {
-    previousRow: boolean[];
-    currentRow: boolean[];
-    nextRow: boolean[];
+import {RowSet} from "./row.set";
+
+export interface FindNeighboursRequest extends RowSet {
     cellIndex: number;
 }
