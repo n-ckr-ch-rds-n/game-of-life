@@ -4,9 +4,7 @@
 
 <div class="row">
     {#each row as cellState}
-        <span class="cell">
-            <div class="cell" style="background-color: {cellState ? 'black' : 'lightblue'}"></div>
-        </span>
+        <div class="cell" class:alive={cellState}></div>
     {/each}
 </div>
 
@@ -19,8 +17,12 @@
     }
 
     .cell {
-
+        background-color: lightblue;
         width: 10px;
         height: 10px;
+    }
+
+    .cell.alive {
+        background-color: black;
     }
 </style>
