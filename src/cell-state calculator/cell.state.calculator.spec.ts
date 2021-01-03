@@ -4,33 +4,24 @@ import expect from "expect";
 describe("Cell state calculator", () => {
     let calculator: CellStateCalculator;
     let neighbours: boolean[];
-    let cellState: boolean;
 
     beforeEach(() => {
         calculator = new CellStateCalculator();
     })
 
-    it("Determines whether cells are lonely", () => {
-        neighbours = [false, true, false, false];
-        expect(calculator.isLonely(neighbours)).toBe(true);
+    it("Calculates whether live cells stay alive", () => {
+        neighbours = [true, true, true, false];
+        expect(calculator.calculateCellState(true, neighbours)).toBe(true);
 
-        neighbours = [true, true, false, false];
-        expect(calculator.isLonely(neighbours)).toBe(false);
+        neighbours = [true, false, false, false];
+        expect(calculator.calculateCellState(true, neighbours)).toBe(false);
     })
 
-    it("Determines whether cells are overcrowded", () => {
-        neighbours = [true, true, true, true];
-        expect(calculator.isOverCrowded(neighbours)).toBe(true);
-
+    it("Calculates whether dead cells resurrect", () => {
         neighbours = [true, true, true, false];
-        expect(calculator.isOverCrowded(neighbours)).toBe(false);
-    })
-
-    it("Determines whether cells are resurrectible", () => {
-        neighbours = [true, true, true, false];
-        expect(calculator.isResurrectible(neighbours)).toBe(true);
+        expect(calculator.calculateCellState(false, neighbours)).toBe(true);
 
         neighbours = [true, true, false, false];
-        expect(calculator.isResurrectible(neighbours)).toBe(false);
+        expect(calculator.calculateCellState(false, neighbours)).toBe(false);
     })
 })
