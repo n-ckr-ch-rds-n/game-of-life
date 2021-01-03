@@ -54,6 +54,15 @@ describe("Matrix updater", () => {
         expect(arraysEqual(firstRow, rowSet.nextRow)).toBe(true);
     })
 
+    it("Returns the last value in the row if no lefthand adjacent", () => {
+        const adjacents = updater.toAdjacents(firstRow, 0);
+        const expectedAdjacents = [false, false];
+        expect(adjacents.length === expectedAdjacents.length).toBe(true);
+        adjacents.forEach(adjacent => {
+            expect(expectedAdjacents.includes(adjacent)).toBe(true);
+        })
+    })
+
     // it("Finds neighbours", () => {
     //     let cellIndex = 0;
     //     let neighbours: boolean[];

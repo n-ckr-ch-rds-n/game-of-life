@@ -41,10 +41,9 @@ export class MatrixUpdater {
     }
 
     toAdjacents(row: boolean[], cellIndex: number): boolean[] {
-        return [
-            row[cellIndex - 1] || row[row.length - 1],
-            row[cellIndex + 1] || false,
-        ];
+        const leftAdjacent = row[cellIndex - 1] === undefined ? row[row.length - 1] : row[cellIndex - 1];
+        const rightAdjacent = row[cellIndex + 1] === undefined ? row[0] : row[cellIndex + 1];
+        return [leftAdjacent, rightAdjacent];
     }
 
     private toPreviousOrNextRowAdjacents(row: boolean[], cellIndex: number): boolean[] {
