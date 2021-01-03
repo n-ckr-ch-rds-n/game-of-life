@@ -1,10 +1,13 @@
 <script lang="ts">
     export let row;
+    import {cellSideLength} from "../cell.side.length";
+
+    const cellDimensions = `width: ${cellSideLength}px; height: ${cellSideLength}px`
 </script>
 
 <div class="row">
     {#each row as cellState}
-        <div class="cell" class:alive={cellState}></div>
+        <div class="cell" class:alive={cellState} style={cellDimensions}></div>
     {/each}
 </div>
 
@@ -18,8 +21,6 @@
 
     .cell {
         background-color: lightblue;
-        width: 10px;
-        height: 10px;
     }
 
     .cell.alive {
