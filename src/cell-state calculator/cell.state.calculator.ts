@@ -1,23 +1,18 @@
 export class CellStateCalculator {
 
     calculateCellState(alive: boolean, neighbours: boolean[]): boolean {
-        if (alive) {
-            return !(this.isLonely(neighbours) || this.isOverCrowded(neighbours));
-        } else {
-            return !!this.isResurrectible(neighbours);
-        }
+        const numberOfLivingNeighbours = this.toNumberOfLivingNeighbours(neighbours);
+        return alive
+            ? this.staysAlive(numberOfLivingNeighbours)
+            : this.resurrects(numberOfLivingNeighbours);
     }
 
-    isResurrectible(neighbours: boolean[]): boolean {
-        return this.toNumberOfLivingNeighbours(neighbours) === 3;
+    staysAlive(numberOfLivingNeighbours: number): boolean {
+        return numberOfLivingNeighbours === 3 || numberOfLivingNeighbours === 2;
     }
 
-    isOverCrowded(neighbours: boolean[]): boolean {
-        return this.toNumberOfLivingNeighbours(neighbours) > 3;
-    }
-
-    isLonely(neighbours: boolean[]): boolean {
-        return this.toNumberOfLivingNeighbours(neighbours) < 2;
+    resurrects(numberOfLivingNeighbours: number): boolean {
+        return numberOfLivingNeighbours === 3;
     }
 
     private toNumberOfLivingNeighbours(neighbours: boolean[]): number {
