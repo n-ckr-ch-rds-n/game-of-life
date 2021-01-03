@@ -29,7 +29,7 @@ export class MatrixUpdater {
         return [
             ...previousAndNextAdjacents,
             ...this.toAdjacents(request.currentRow, request.cellIndex)
-        ].filter(c => c !== undefined);
+        ];
     }
 
     toRows(matrix: Matrix, rowIndex: number): RowSet {
@@ -42,8 +42,8 @@ export class MatrixUpdater {
 
     private toAdjacents(row: boolean[], cellIndex: number): boolean[] {
         return [
-            row[cellIndex - 1],
-            row[cellIndex + 1],
+            row[cellIndex - 1] || row[row.length - 1],
+            row[cellIndex + 1] || row[0],
         ];
     }
 
