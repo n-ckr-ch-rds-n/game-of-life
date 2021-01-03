@@ -13,9 +13,7 @@
 
     const timer = setInterval(() => {
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
-    }, 10);
-
-    console.log("WTF");
+    }, 100);
 
     onDestroy(() => clearInterval(timer));
 

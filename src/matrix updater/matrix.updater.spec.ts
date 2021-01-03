@@ -63,6 +63,14 @@ describe("Matrix updater", () => {
         })
     })
 
+    it("Returns the first value in the row if no righthand adjacent", () => {
+        const adjacents = updater.toAdjacents(secondRow, 2);
+        const expectedAdjacents = [false, true];
+        adjacents.forEach(adjacent => {
+            expect(expectedAdjacents.includes(adjacent)).toBe(true);
+        })
+    })
+
     // it("Finds neighbours", () => {
     //     let cellIndex = 0;
     //     let neighbours: boolean[];
