@@ -1,24 +1,17 @@
 <script lang="ts">
+    import {cellSideLength} from "../cell.side.length";
     export let state: boolean;
-    const colorByState = {
-        0: "white",
-        1: "black"
-    };
-    let color: string = state ? "black" : "lightblue";
+    const cellDimensions = `width: ${cellSideLength}px; height: ${cellSideLength}px`;
 </script>
 
-<!--<main>-->
-<!--    <div class="square" style="background-color: {color}"></div>-->
-<!--&lt;!&ndash;    <p>{state}</p>&ndash;&gt;-->
-<!--</main>-->
-
-<!--<div class="square" style="background-color: {color}"></div>-->
-
-<span><div class="square" style="background-color: {color}"></div></span>
+<div class="cell" class:alive={state} style={cellDimensions}></div>
 
 <style>
-    .square {
-        height: 20px;
-        width: 10px;
+    .cell {
+        background-color: lightblue;
+    }
+
+    .cell.alive {
+        background-color: black;
     }
 </style>
