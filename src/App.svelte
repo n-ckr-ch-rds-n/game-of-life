@@ -4,15 +4,18 @@
     import {matrixStore} from "./matrix store/matrix.store";
     import {MatrixInitialiser} from "./matrix initialiser/matrix.initialiser";
     import Row from "./row/Row.svelte";
+    import {onDestroy} from "svelte";
     const calculator = new CellStateCalculator();
     const updater = new MatrixUpdater(calculator);
     const initialiser = new MatrixInitialiser();
     const initialMatrix = initialiser.initialise(window.innerWidth);
     matrixStore.update(() => initialMatrix);
 
-    setInterval(() => {
+    const timer = setInterval(() => {
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
     }, 10);
+
+    onDestroy(() => clearInterval(timer));
 
 </script>
 <main>
