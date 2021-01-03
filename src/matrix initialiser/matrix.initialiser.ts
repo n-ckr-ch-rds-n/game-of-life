@@ -1,7 +1,8 @@
 import {Matrix} from "../matrix updater/matrix";
+import {cellSideLength} from "../cell.side.length";
 
 export class MatrixInitialiser {
-    cellSideLength = 10;
+    cellSideLength = cellSideLength;
 
     initialise(dimensions: {width: number, height: number}): Matrix {
         const cellsPerRow = Math.floor(dimensions.width / this.cellSideLength);
