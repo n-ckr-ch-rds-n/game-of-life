@@ -8,12 +8,14 @@
     const calculator = new CellStateCalculator();
     const updater = new MatrixUpdater(calculator);
     const initialiser = new MatrixInitialiser();
-    const initialMatrix = initialiser.initialise(window.innerWidth);
+    const initialMatrix = initialiser.initialise({width: window.innerWidth, height: window.innerHeight});
     matrixStore.update(() => initialMatrix);
 
     const timer = setInterval(() => {
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
     }, 10);
+
+    console.log("WTF");
 
     onDestroy(() => clearInterval(timer));
 

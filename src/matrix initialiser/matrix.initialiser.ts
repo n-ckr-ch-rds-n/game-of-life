@@ -1,11 +1,12 @@
 import {Matrix} from "../matrix updater/matrix";
 
 export class MatrixInitialiser {
-    cellWidth = 10;
+    cellSideLength = 10;
 
-    initialise(windowWidth: number): Matrix {
-        const cellsPerRow = Math.floor(windowWidth / this.cellWidth);
-        return this.generateEmptyArray(cellsPerRow).map(() => this.generateRow(cellsPerRow));
+    initialise(dimensions: {width: number, height: number}): Matrix {
+        const cellsPerRow = Math.floor(dimensions.width / this.cellSideLength);
+        const numberOfRows = Math.floor(dimensions.height / this.cellSideLength);
+        return this.generateEmptyArray(numberOfRows).map(() => this.generateRow(cellsPerRow));
     }
 
     private generateInitialValue(): boolean {

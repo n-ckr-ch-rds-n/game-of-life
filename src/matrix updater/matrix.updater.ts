@@ -40,10 +40,10 @@ export class MatrixUpdater {
         }
     }
 
-    private toAdjacents(row: boolean[], cellIndex: number): boolean[] {
+    toAdjacents(row: boolean[], cellIndex: number): boolean[] {
         return [
             row[cellIndex - 1] || row[row.length - 1],
-            row[cellIndex + 1] || row[0],
+            row[cellIndex + 1] || false,
         ];
     }
 
