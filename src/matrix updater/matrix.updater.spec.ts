@@ -71,24 +71,24 @@ describe("Matrix updater", () => {
         })
     })
 
-    // it("Finds neighbours", () => {
-    //     let cellIndex = 0;
-    //     let neighbours: boolean[];
-    //     const request: FindNeighboursRequest = {
-    //         previousRow: [true, false, false],
-    //         currentRow: [false, true, false],
-    //         nextRow: [false, false, false],
-    //         cellIndex
-    //     }
-    //     neighbours = updater.toNeighbours(request);
-    //     expect(neighbours.length).toBe(8);
-    //     expect(neighbours.filter(n => n === true).length).toBe(2);
-    //     expect(neighbours.filter(n => n === false).length).toBe(3);
-    //
-    //     cellIndex = 1;
-    //     neighbours = updater.toNeighbours({...request, cellIndex});
-    //     expect(neighbours.length).toBe(8);
-    //     expect(neighbours.filter(n => n === true).length).toBe(1);
-    //     expect(neighbours.filter(n => n === false).length).toBe(7)
-    // })
+    it("Finds neighbours correctly", () => {
+        let cellIndex = 0;
+        let neighbours: boolean[];
+        const request: FindNeighboursRequest = {
+            previousRow: firstRow,
+            currentRow: secondRow,
+            nextRow: thirdRow,
+            cellIndex
+        }
+        neighbours = updater.toNeighbours(request);
+        expect(neighbours.length).toBe(8);
+        expect(neighbours.filter(n => n === true).length).toBe(2);
+        expect(neighbours.filter(n => n === false).length).toBe(6);
+
+        cellIndex = 2;
+        neighbours = updater.toNeighbours({...request, cellIndex});
+        expect(neighbours.length).toBe(8);
+        expect(neighbours.filter(n => n === true).length).toBe(2);
+        expect(neighbours.filter(n => n === false).length).toBe(6);
+    })
 })
