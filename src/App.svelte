@@ -15,8 +15,6 @@
         matrixStore.update(currentValue => updater.updateMatrix(currentValue));
     }, 100);
 
-    console.log("HELLO");
-
     onDestroy(() => clearInterval(timer));
 
 </script>
