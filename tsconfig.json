@@ -3,12 +3,13 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
   "compilerOptions": {
-    "types": ["mocha"],
+    "types": ["mocha", "svelte"],
     "isolatedModules": false,
     "importsNotUsedAsValues": "preserve",
     "lib": [
       "es2019",
       "dom"
-    ]
+    ],
+    "sourceMap": true
   }
 }
