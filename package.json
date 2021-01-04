@@ -6,7 +6,9 @@
     "dev": "rollup -c -w",
     "start": "sirv public",
     "test": "ts-mocha src/**/*.spec.ts",
-    "validate": "svelte-check"
+    "validate": "svelte-check",
+    "commit-bundle": "git add public/build -f && git commit -m 'Commit bundle'",
+    "deploy": "npm run commit-bundle && git subtree push --prefix public origin gh-pages"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",
